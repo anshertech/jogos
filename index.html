@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogos</title>
+    <link rel="icon" href="img/mito.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css"> 
+   </head>
+<body class="min-h-screen text-white">
+    <script src="script.js"></script>
+    <!-- Matrix Background Effect -->
+    <div class="matrix-bg">
+        <canvas id="matrix-canvas"></canvas>
+    </div>
+
+    <!-- Header -->
+    <header class="cyber-card shadow-2xl relative">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">                    
+                    <div>
+                        <h1 class="game-title text-2xl md:text-3xl font-bold text-green-400">JOGOS</h1>
+                        <p class="text-green-300">Aprenda sobre os Objetivos de Desenvolvimento Sustentável (ODS) brincando!</p>
+                    </div>
+                </div>
+                <button onclick="showGameMenu()" class="btn-cyber text-white px-6 py-3 rounded-lg font-medium">
+                    🏠 INÍCIO
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Menu Principal -->
+    <section id="game-menu" class="game-section active py-12">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="game-title text-4xl md:text-5xl font-bold mb-4 text-green-400">
+                    ESCOLHA SEU JOGO
+                </h2>                
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                <!-- Jogos Originais dos ODS -->
+                <div class="game-card cyber-card rounded-2xl p-6 cursor-pointer hologram-effect" onclick="showGame('memory-game')">
+                    <div class="text-center relative z-10">
+                        <div class="img-jog text-5xl mb-4"><img src="img/jogm.png"></div>
+                        <h3 class="text-2xl font-bold mb-3 text-green-400">Jogo da Memória</h3>
+                        <p class="text-gray-300 mb-4">Encontre os pares dos ODS e teste sua memória!</p>
+                        <div class="bg-green-500/30 text-green-300 px-3 py-1 rounded-full text-sm font-medium border border-green-500/30">
+                            Concentração
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="game-card cyber-card rounded-2xl p-6 cursor-pointer hologram-effect" onclick="showGame('quiz-game')">
+                    <div class="text-center relative z-10">
+                        <div class="img-jog text-5xl mb-4"><img src="img/quiz.webp"></div>
+                        <h3 class="text-2xl font-bold mb-3 text-green-400">Quiz dos ODS</h3>
+                        <p class="text-gray-300 mb-4">Teste seus conhecimentos sobre sustentabilidade!</p>
+                        <div class="bg-blue-500/30 text-blue-300 px-3 py-1 rounded-full text-sm font-medium border border-blue-500/30">
+                            Conhecimento
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card cyber-card rounded-2xl p-6 cursor-pointer hologram-effect" onclick="showGame('eco-calculator')">
+                    <div class="text-center relative z-10">
+                        <div class="img-jog text-5xl mb-4"><img src="img/calim.png"></div>
+                        <h3 class="text-2xl font-bold mb-3 text-green-400">Calculadora de Impacto</h3>
+                        <p class="text-gray-300 mb-4">Calcule sua pegada de carbono!</p>
+                        <div class="bg-emerald-500/30 text-emerald-300 px-3 py-1 rounded-full text-sm font-medium border border-emerald-500/30">
+                            Sustentabilidade
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Jogos Originais Restantes -->
+                <div class="game-card cyber-card rounded-2xl p-6 cursor-pointer hologram-effect" onclick="showGame('word-search')">
+                    <div class="text-center relative z-10">
+                        <div class="img-jog text-5xl mb-4"><img src="img/capa.png"></div>
+                        <h3 class="text-2xl font-bold mb-3 text-green-400">Caça-Palavras</h3>
+                        <p class="text-gray-300 mb-4">Encontre palavras relacionadas aos ODS!</p>
+                        <div class="bg-orange-500/30 text-orange-300 px-3 py-1 rounded-full text-sm font-medium border border-orange-500/30">
+                            Observação
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="game-card cyber-card rounded-2xl p-6 cursor-pointer hologram-effect" onclick="showGame('guess-ods')">
+                    <div class="text-center relative z-10">
+                        <div class="img-jog text-5xl mb-4"><img src="img/adv.png"></div>
+                        <h3 class="text-2xl font-bold mb-3 text-green-400">Adivinhe o ODS</h3>
+                        <p class="text-gray-300 mb-4">Descubra qual ODS pelas dicas!</p>
+                        <div class="bg-teal-500/30 text-teal-300 px-3 py-1 rounded-full text-sm font-medium border border-teal-500/30">
+                            Dedução
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-card cyber-card rounded-2xl p-6 cursor-pointer hologram-effect" onclick="showGame('myth-truth')">
+                    <div class="text-center relative z-10">
+                        <div class="img-jog text-5xl mb-4"><img src="img/mito.png"></div>
+                        <h3 class="text-2xl font-bold mb-3 text-green-400">Mito ou Verdade</h3>
+                        <p class="text-gray-300 mb-4">Descubra fatos e mitos sobre sustentabilidade!</p>
+                        <div class="bg-pink-500/30 text-pink-300 px-3 py-1 rounded-full text-sm font-medium border border-pink-500/30">
+                            Análise
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculadora de Impacto -->
+    <section id="eco-calculator" class="game-section py-12">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <div class="cyber-card rounded-2xl p-8 shadow-2xl">
+                <div class="text-center mb-8">
+                    <h2 class="game-title text-3xl font-bold mb-4 text-green-400">🌱 CALCULADORA DE IMPACTO</h2>
+                    <p class="text-gray-300">Calcule sua pegada de carbono!</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2 text-green-400">Quantos banhos você toma por dia?</label>
+                            <input type="number" id="daily-showers" class="w-full p-3 bg-gray-800 border-2 border-green-500/30 rounded-lg focus:border-green-500 focus:outline-none text-white" placeholder="Ex: 2" min="0" max="10">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold mb-2 text-green-400">Em média, quantos minutos você gasta em cada banho?</label>
+                            <input type="number" id="shower-minutes" class="w-full p-3 bg-gray-800 border-2 border-green-500/30 rounded-lg focus:border-green-500 focus:outline-none text-white" placeholder="Ex: 15" min="1" max="60">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold mb-2 text-green-400">Quantos quilômetros você percorre por dia para ir ao trabalho, escola ou faculdade?</label>
+                            <input type="number" id="commute-distance" class="w-full p-3 bg-gray-800 border-2 border-green-500/30 rounded-lg focus:border-green-500 focus:outline-none text-white" placeholder="Ex: 10" min="0">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold mb-2 text-green-400">Qual é o meio de transporte utilizado?</label>
+                            <select id="transport-type" class="w-full p-3 bg-gray-800 border-2 border-green-500/30 rounded-lg focus:border-green-500 focus:outline-none text-white">
+                                <option value="car">🚗 Carro</option>
+                                <option value="bus">🚌 Ônibus</option>
+                                <option value="motorcycle">🏍️ Moto</option>
+                                <option value="bike">🚲 Bicicleta</option>
+                                <option value="walk">🚶 A pé</option>
+                                <option value="metro">🚇 Metrô</option>
+                            </select>
+                        </div>
+                        
+                        <button onclick="calculateImpact()" class="w-full btn-cyber text-white py-3 rounded-lg font-medium">
+                            🔍 Calcular Impacto
+                        </button>
+                    </div>
+                    
+                    <div id="impact-results" class="cyber-card rounded-xl p-6 hidden">
+                        <h3 class="text-lg font-bold mb-4 text-blue-400">Seus Resultados:</h3>
+                        <div id="carbon-footprint" class="text-center mb-4">
+                            <!-- Resultado aparecerá aqui -->
+                        </div>
+                        <div id="impact-tips" class="space-y-2">
+                            <!-- Dicas aparecerão aqui -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Todos os outros jogos mantidos... -->
+    <!-- (Por brevidade, incluindo apenas alguns exemplos principais) -->
+
+    <!-- Jogo da Memória -->
+    <section id="memory-game" class="game-section py-12">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <div class="cyber-card rounded-2xl p-8 shadow-2xl">
+                <div class="text-center mb-8">
+                    <h2 class="game-title text-3xl font-bold mb-4 text-green-400">🧠 JOGO DA MEMÓRIA DOS ODS</h2>
+                    <p class="text-gray-300">Encontre os pares dos ODS!</p>
+                </div>
+                
+
+                
+                <div class="text-center mb-6">
+                    <div class="inline-flex items-center space-x-4 bg-green-500/20 px-6 py-3 rounded-lg border border-green-500/30">
+                        <span class="text-green-300 font-medium">Pares encontrados: <span id="memory-score">0</span>/8</span>
+                        <span class="text-green-300 font-medium">Tentativas: <span id="memory-attempts">0</span></span>
+                    </div>
+                </div>
+                
+                <div id="memory-grid" class="grid grid-cols-4 gap-3 mb-8 max-w-md mx-auto">
+                    <div id="ods-container"></div>
+                    <!-- Cards serão gerados pelo JavaScript -->
+                </div>
+                
+                <div class="text-center">
+                    <button onclick="startMemoryGame()" class="btn-cyber text-white px-8 py-3 rounded-lg font-medium">
+                        🔄 Novo Jogo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz dos ODS -->
+    <section id="quiz-game" class="game-section py-12">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <div class="cyber-card rounded-2xl p-8 shadow-2xl">
+                <div class="text-center mb-8">
+                    <h2 class="game-title text-3xl font-bold mb-4 text-green-400">❓ QUIZ DOS ODS</h2>
+                    <p class="text-gray-300">Teste seus conhecimentos sobre sustentabilidade!</p>
+                </div>
+                
+                <div class="text-center mb-6">
+                    <div class="inline-flex items-center space-x-4 bg-green-500/20 px-6 py-3 rounded-lg border border-green-500/30">
+                        <span class="text-green-300 font-medium">Pergunta: <span id="quiz-current">1</span>/10</span>
+                        <span class="text-green-300 font-medium">Pontos: <span id="quiz-score">0</span></span>
+                    </div>
+                </div>
+                
+                <div id="quiz-container" class="mb-8">
+                    <div id="quiz-question" class="text-xl font-bold mb-6 text-center text-white"></div>
+                    <div id="quiz-options" class="space-y-3">
+                        <!-- Opções aparecerão aqui -->
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button onclick="startQuizGame()" class="btn-cyber text-white px-8 py-3 rounded-lg font-medium">
+                        🎯 Iniciar Quiz
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Caça-Palavras -->
+    <section id="word-search" class="game-section py-12">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <div class="cyber-card rounded-2xl p-8 shadow-2xl">
+                <div class="text-center mb-8">
+                    <h2 class="game-title text-3xl font-bold mb-4 text-green-400">🔍 CAÇA-PALAVRAS DOS ODS</h2>
+                    <p class="text-gray-300">Encontre as palavras relacionadas aos ODS!</p>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-2">
+                        <div id="word-search-grid" class="grid grid-cols-12 gap-1 mb-6 max-w-lg mx-auto">
+                            <!-- Grid será gerado pelo JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-bold mb-4 text-blue-400">Palavras para encontrar:</h3>
+                        <div id="word-list" class="space-y-2">
+                            <!-- Lista de palavras aparecerá aqui -->
+                        </div>
+                        
+                        <div class="mt-6 text-center">
+                            <div class="bg-green-500/20 px-4 py-2 rounded-lg border border-green-500/30">
+                                <span class="text-green-300 font-medium">Encontradas: <span id="words-found">0</span>/8</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-8">
+                    <button onclick="startWordSearch()" class="btn-cyber text-white px-8 py-3 rounded-lg font-medium">
+                        🔄 Novo Jogo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Adivinhe o ODS -->
+    <section id="guess-ods" class="game-section py-12">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <div class="cyber-card rounded-2xl p-8 shadow-2xl">
+                <div class="text-center mb-8">
+                    <h2 class="game-title text-3xl font-bold mb-4 text-green-400">🤔 ADIVINHE O ODS</h2>
+                    <p class="text-gray-300">Descubra qual ODS pelas dicas!</p>
+                </div>
+                
+                <div class="text-center mb-6">
+                    <div class="inline-flex items-center space-x-4 bg-green-500/20 px-6 py-3 rounded-lg border border-green-500/30">
+                        <span class="text-green-300 font-medium">Rodada: <span id="guess-round">1</span>/10</span>
+                        <span class="text-green-300 font-medium">Pontos: <span id="guess-score">0</span></span>
+                    </div>
+                </div>
+                
+                <div id="guess-container" class="mb-8">
+                    <div class="cyber-card rounded-xl p-6 mb-6">
+                        <h3 class="text-lg font-bold mb-4 text-blue-400">🔍 Dicas:</h3>
+                        <div id="guess-clues" class="space-y-2">
+                            <!-- Dicas aparecerão aqui -->
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4" id="guess-options">
+                        <!-- Opções aparecerão aqui -->
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button onclick="startGuessGame()" class="btn-cyber text-white px-8 py-3 rounded-lg font-medium">
+                        🎯 Iniciar Jogo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mito ou Verdade -->
+    <section id="myth-truth" class="game-section py-12">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <div class="cyber-card rounded-2xl p-8 shadow-2xl">
+                <div class="text-center mb-8">
+                    <h2 class="game-title text-3xl font-bold mb-4 text-green-400">⚖️ MITO OU VERDADE</h2>
+                    <p class="text-gray-300">Descubra fatos e mitos sobre sustentabilidade!</p>
+                </div>
+                
+                <div class="text-center mb-6">
+                    <div class="inline-flex items-center space-x-4 bg-green-500/20 px-6 py-3 rounded-lg border border-green-500/30">
+                        <span class="text-green-300 font-medium">Pergunta: <span id="myth-current">1</span>/10</span>
+                        <span class="text-green-300 font-medium">Acertos: <span id="myth-score">0</span></span>
+                    </div>
+                </div>
+                
+                <div id="myth-container" class="mb-8">
+                    <div class="cyber-card rounded-xl p-6 mb-6">
+                        <div id="myth-statement" class="text-xl text-center text-white mb-6">
+                            <!-- Afirmação aparecerá aqui -->
+                        </div>
+                        
+                        <div class="flex justify-center space-x-6">
+                            <button onclick="answerMyth(true)" class="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all">
+                                ✅ VERDADE
+                            </button>
+                            <button onclick="answerMyth(false)" class="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all">
+                                ❌ MITO
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="myth-explanation" class="cyber-card rounded-xl p-4 hidden">
+                        <!-- Explicação aparecerá aqui -->
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button onclick="startMythGame()" class="btn-cyber text-white px-8 py-3 rounded-lg font-medium">
+                        🎯 Iniciar Jogo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="cyber-card py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <div class="mb-4">
+                <h3 class="game-title text-xl font-bold mb-2 text-green-400">Universidade Federal Rural do Rio de Janeiro (UFRRJ)</h3>
+                <p class="text-gray-300">Laboratório de Ação Humanitária e Paradiplomacia</p>
+            </div>
+            <div class="text-sm text-gray-400">
+                <p>&copy; 2025 Jogos - Izamara Keilla</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
